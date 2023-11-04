@@ -1,4 +1,8 @@
-schemaVersion: 2.2.1
+schemaVersion: 2.2.0
+metadata:
+  name: teleport
+  version: '0.0.1'
+  displayName: Teleport
 components:
   - name: db
     container:
