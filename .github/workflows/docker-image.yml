@@ -16,6 +16,5 @@ jobs:
     - uses: actions/checkout@v3
     - name: Build REST image
       run: docker build ./teleport_rest --file ./teleport_rest/Dockerfile --tag my-image-name:$(date +%s)
-    - uses: actions/checkout@v3
     - name: Build React image
       run: docker build ./teleport_web --file ./teleport_web/Dockerfile --tag my-image-name:$(date +%s)
