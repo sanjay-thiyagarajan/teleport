@@ -43,3 +43,11 @@ commands:
       group:
         kind: run
         isDefault: true
+  - id: deploy
+    composite:
+      commands:
+      - rest-install
+      - rest-run
+      group:
+        kind: deploy
+        isDefault: true
