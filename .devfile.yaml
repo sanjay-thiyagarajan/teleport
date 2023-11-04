@@ -1,0 +1,41 @@
+schemaVersion: 2.2.1
+components:
+  - name: db
+    container:
+      image: mysql:latest
+      env:
+        - name: MYSQL_DATABASE
+          value: 'teleportdb'
+        - name: MYSQL_PASSWORD
+          value: 'password'
+        - name: MYSQL_ROOT_PASSWORD
+          value: 'password'
+      endpoints:
+        - exposure: public
+          name: db-3306
+          protocol: http
+          targetPort: 3306
+  - name: teleport-rest
+    container:
+      image: python:latest
+      env:
+        - name: PYTHONUNBUFFERED
+          value: '1'
+
+commands:
+  - id: rest-install
+    exec:
+      commandLine: pip install -r requirements.txt
+      component: teleport-rest
+      workingDir: ./teleport_rest
+      group:
+        kind: build
+        isDefault: true
+  - id: rest-run
+    exec:
+      commandLine: python manage.py migrate && python manage.py runserver 0.0.0.0:8000
+      component: teleport-rest
+      workingDir: ./teleport_rest
+      group:
+        kind: run
+        isDefault: true
