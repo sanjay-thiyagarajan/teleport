@@ -10,3 +10,9 @@ projects:
         origin: 'https://github.com/sanjay-thiyagarajan/teleport_web.git'
       checkoutFrom:
         revision: main
+  - name: teleport-rest
+    git:
+      remotes:
+        origin: 'https://github.com/sanjay-thiyagarajan/teleport_rest.git'
+      checkoutFrom:
+        revision: main
