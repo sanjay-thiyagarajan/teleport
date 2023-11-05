@@ -34,7 +34,37 @@ components:
           targetPort: 3306
   - name: teleport-rest
     container:
-      image: python:latest
-      env:
-        - name: PYTHONUNBUFFERED
-          value: '1'
+      build: 
+        context: ./teleport_rest
+        dockerfile: Dockerfile
+  - name: teleport-web
+    container:
+      build: 
+        context: ./teleport_web
+        dockerfile: Dockerfile
+      
+commands:
+  - id: rest-install
+    exec:
+      commandLine: pip install -r requirements.txt
+      component: teleport-rest
+      workingDir: ./teleport_rest
+      group:
+        kind: build
+        isDefault: true
+  - id: rest-run
+    exec:
+      commandLine: python manage.py migrate && python manage.py runserver 0.0.0.0:8000
+      component: teleport-rest
+      workingDir: ./teleport_rest
+      group:
+        kind: run
+        isDefault: true
+  - id: deploy
+    composite:
+      commands:
+      - rest-install
+      - rest-run
+      group:
+        kind: deploy
+        isDefault: true
