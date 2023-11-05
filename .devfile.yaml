@@ -3,19 +3,6 @@ metadata:
   name: teleport
   version: '0.0.1'
   displayName: Teleport
-projects:
-  - name: teleport-web
-    git:
-      remotes:
-        origin: 'https://github.com/sanjay-thiyagarajan/teleport_web.git'
-      checkoutFrom:
-        revision: main
-  - name: teleport-rest
-    git:
-      remotes:
-        origin: 'https://github.com/sanjay-thiyagarajan/teleport_rest.git'
-      checkoutFrom:
-        revision: main
 components:
   - name: teleport-rest
     image:
