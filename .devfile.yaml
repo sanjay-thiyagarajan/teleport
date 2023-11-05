@@ -4,7 +4,7 @@ metadata:
   version: '0.0.1'
   displayName: Teleport
 projects:
-  - name: teleport_web
+  - name: teleportWeb
     git:
       remotes:
         origin: 'https://github.com/sanjay-thiyagarajan/teleport_web.git'
