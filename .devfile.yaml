@@ -10,28 +10,3 @@ projects:
         origin: 'https://github.com/sanjay-thiyagarajan/teleport.git'
       checkoutFrom:
         revision: main
-commands:
-  - id: rest-install
-    exec:
-      commandLine: pip install -r requirements.txt
-      component: teleport-rest
-      workingDir: ./teleport_rest
-      group:
-        kind: build
-        isDefault: true
-  - id: rest-run
-    exec:
-      commandLine: python manage.py migrate && python manage.py runserver 0.0.0.0:8000
-      component: teleport-rest
-      workingDir: ./teleport_rest
-      group:
-        kind: run
-        isDefault: true
-  - id: deploy
-    composite:
-      commands:
-      - rest-install
-      - rest-run
-      group:
-        kind: deploy
-        isDefault: true
