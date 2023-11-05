@@ -3,29 +3,13 @@ metadata:
   name: teleport
   version: '0.0.1'
   displayName: Teleport
-components:
-  - name: db
-    container:
-      image: mysql:latest
-      env:
-        - name: MYSQL_DATABASE
-          value: 'teleportdb'
-        - name: MYSQL_PASSWORD
-          value: 'password'
-        - name: MYSQL_ROOT_PASSWORD
-          value: 'password'
-      endpoints:
-        - exposure: public
-          name: db-3306
-          protocol: http
-          targetPort: 3306
-  - name: teleport-rest
-    container:
-      image: python:latest
-      env:
-        - name: PYTHONUNBUFFERED
-          value: '1'
-
+projects:
+  - name: teleport
+    git:
+      remotes:
+        origin: 'https://github.com/sanjay-thiyagarajan/teleport.git'
+      checkoutFrom:
+        revision: main
 commands:
   - id: rest-install
     exec:
