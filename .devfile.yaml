@@ -34,14 +34,10 @@ components:
           targetPort: 3306
   - name: teleport-rest
     container:
-      build: 
-        context: ./teleport_rest
-        dockerfile: Dockerfile
-  - name: teleport-web
-    container:
-      build: 
-        context: ./teleport_web
-        dockerfile: Dockerfile
+      image: python:latest
+      env:
+        - name: PYTHONUNBUFFERED
+          value: '1'
       
 commands:
   - id: rest-install
