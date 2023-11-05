@@ -17,27 +17,14 @@ projects:
       checkoutFrom:
         revision: main
 components:
-  - name: db
-    container:
-      image: mysql:latest
-      env:
-        - name: MYSQL_DATABASE
-          value: 'teleportdb'
-        - name: MYSQL_PASSWORD
-          value: 'password'
-        - name: MYSQL_ROOT_PASSWORD
-          value: 'password'
-      endpoints:
-        - exposure: public
-          name: db-3306
-          protocol: http
-          targetPort: 3306
   - name: teleport-rest
-    container:
-      image: python:latest
-      env:
-        - name: PYTHONUNBUFFERED
-          value: '1'
+    image:
+      imageName: python3:latest
+      autoBuild: true
+      dockerfile:
+        uri: docker/Dockerfile
+        buildContext: .
+        rootRequired: false
       
 commands:
   - id: rest-install
