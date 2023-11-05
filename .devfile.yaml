@@ -6,7 +6,7 @@ metadata:
 components:
   - name: teleport-rest
     image:
-      imageName: python3:latest
+      imageName: python:latest
       autoBuild: true
       dockerfile:
         uri: docker/Dockerfile
