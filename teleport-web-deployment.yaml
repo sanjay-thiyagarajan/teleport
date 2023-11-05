@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.26.0 (40646f47)
+  labels:
+    io.kompose.service: teleport-web
+  name: teleport-web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: teleport-web
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert
+        kompose.version: 1.26.0 (40646f47)
+      labels:
+        io.kompose.service: teleport-web
+    spec:
+      containers:
+        - image: teleport-web
+          name: teleport-web
+          ports:
+            - containerPort: 3000
+          resources: {}
+      restartPolicy: Always
+status: {}
